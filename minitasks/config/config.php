@@ -14,8 +14,8 @@ $COPYRIGHT="© 2018. <a href=https://github.com/pphome2/minitasks>MiniTasks</a>"
 # need md5 passcode
 $MT_PASS="196f9674066aa625b539c2d677d0b676";
 
-$MT_SITENAME="MiniTasks - Karakter";
-$MT_SITE_HOME="http://www.karakter.info/v2";
+$MT_SITENAME="MiniTasks - Example.com";
+$MT_SITE_HOME="http://www.example.com";
 $MT_TASKS_ROOT="tasks";
 $MT_CONFIG_DIR="config";
 $MT_SCHEMA_FILE="schema";
@@ -36,7 +36,7 @@ $MT_PRINTFILE="print.php";
 
 # language
 
-$L_SITENAME="Karakter feladatlista";
+$L_SITENAME="Feladatlista";
 $L_SITEHOME="Nyitólap";
 $L_MTHOME="Feladatok";
 $L_ADMINISTRATION="Adminisztráció";
