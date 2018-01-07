@@ -40,6 +40,13 @@ if ($_GET[$MT_PARAM_DEL]<>""){
 	if (file_exists($taskfile)){
 		$tf=file_get_contents($taskfile);
 		$tfa=explode(PHP_EOL,$tf);
+		$sor=$_GET[$MT_PARAM_DATA];
+		$li=htmlspecialchars($tfa[$line]);
+		$li=str_replace(" ","_",$li);
+		#echo($sor."?".$li);
+		if ($li<>$sor){
+			$line=1000000;
+		}
 		$db=count($tfa);
 		$k=0;
 		for($i=0;$i<$db;$i++){
@@ -71,6 +78,7 @@ if (isset($_POST["submitall"])){
 			$new=$new.$_POST["3"].$MT_SEPARATE_CHAR;
 			$new=$new.$_POST["4"].$MT_SEPARATE_CHAR;
 			$new=$new.$_POST["5"].PHP_EOL;
+			$new=strip_tags($new);
 			if (file_exists($taskfile)){
 				$tf=file_get_contents($taskfile);
 				$tf=$tf.$new;
@@ -143,7 +151,9 @@ if (file_exists($schemafile)){
 				for ($k=0;$k<$db2;$k++){
 					echo("<td>$tfal[$k]</td>");
 				}
-				echo("<td><a href=?$MT_PARAM_DEL=$i><button class=button>$L_DELETELINEBUTTON</button></a></td>");
+				$link=htmlspecialchars($tfa[$i]);
+				$link=str_replace(" ","_",$link);
+				echo("<td><a href=?$MT_PARAM_DEL=$i&$MT_PARAM_DATA=$link><button class=button>$L_DELETELINEBUTTON</button></a></td>");
 				echo("</tr>");
 			}
 		}

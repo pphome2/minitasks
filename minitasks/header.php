@@ -11,8 +11,6 @@
 <body>
 
 <section id=h1>
-<a href="<?php echo($DM_SITE_HOME); ?>"><?php echo($L_SITEHOME); ?></a>
-<a href="<?php echo("index.html"); ?>"><?php echo($L_MTHOME); ?></a>
 </section>
 
 <section id=h1>

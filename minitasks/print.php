@@ -15,6 +15,7 @@ include("config/config.php");
 echo("<html><head><style>");
 include("$MT_CSS2");
 echo("</style></head><body>");
+echo("<a href=$MT_ADMINFILE>");
 
 # files
 $schemafile="./".$MT_TASKS_ROOT."/".$MT_SCHEMA_FILE;
@@ -57,6 +58,6 @@ if (file_exists($schemafile)){
 	echo("<section id=message>$L_FILENOTFOUND</section>");
 }
 
-echo("</body></html>");
+echo("</a></body></html>");
 
 ?>
