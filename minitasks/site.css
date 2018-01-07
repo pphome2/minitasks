@@ -1,0 +1,210 @@
+
+body {
+    font-size: 1em;
+    font-weight: 700;
+    background-color: #e6e6e6;
+}
+
+h1 { text-shadow: 2px 2px #ff0000; }
+
+h2 { text-shadow: 2px 2px #ffffff; }
+
+a { padding: 10px 10px 10px 10px;}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+#inputlabel {
+	width: 20%;
+	border: 1px solid;
+}
+
+#form1 {
+	background-color:#c2d6d6;
+	margin:20px 160px 20px 160px;
+}
+
+#message {
+	background-color:#c2d6d6;
+	margin:20px 60px 20px 60px;
+	padding:20px 20px 20px 20px;
+	color: red;
+}
+
+#f1 {
+	background-color:#c2d6d6;
+	margin:20px 60px 20px 60px;
+	padding:20px 20px 20px 20px;
+}
+
+#h1 {
+	background-color:#c2d6d6;
+	margin:20px 60px 20px 60px;
+	padding:20px 20px 20px 20px;
+	text-align: right;
+}
+
+#s1 {
+	background-color:#c2d6d6;
+	margin:20px 60px 20px 60px;
+	padding:20px 20px 20px 20px;
+}
+
+#st {
+	background-color:#c2d6d6;
+	margin:20px 60px 20px 60px;
+	padding:40px 20px 40px 20px;
+}
+
+#s2 {
+	background-color:#c2d6d6;
+	margin:20px 20px 20px 40px;
+}
+
+select { padding:5px 15px 5px 15px; }
+
+.mt-table,.mt-table-all {
+	border-collapse:collapse;
+	border-spacing:0;
+	width:100%;
+	display:table
+}
+.mt-table-all { border:1px solid #ccc }
+.mt-bordered tr,.mt-table-all tr { border-bottom:1px solid #ddd }
+.mt-striped tbody tr:nth-child(even){ background-color:#f1f1f1 }
+.mt-table-all tr:nth-child(odd){background-color:#fff}
+.mt-table-all tr:nth-child(even){background-color:#f1f1f1}
+.mt-hoverable tbody tr:hover,.mt-ul.mt-hoverable li:hover{background-color:#ccc}
+.mt-centered tr th,.mt-centered tr td{text-align:center}
+.mt-table td,.mt-table th,.mt-table-all td,.mt-table-all th {
+	padding:8px 8px;
+	display:table-cell;
+	text-align:left;
+	vertical-align:top
+}
+.mt-table th:first-child,.mt-table td:first-child,.mt-table-all th:first-child,.mt-table-all td:first-child{padding-left:16px}
+.mt-red,.mt-hover-red:hover{color:#fff!important;background-color:#f44336!important}
+
+.button {
+	padding: 2px 5px 2px 5px;
+    color: white;
+    ffont-size: 1em;
+    ffont-weight: 700;
+    background-color: black;
+    display: inline-block;
+}
+
+.button:focus,
+.button:hover {
+    background-color: red;
+}
+
+.accordion {
+    background-color: #CEF6F5;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    bbackground-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+.tab button.active:after {
+    content: "";
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 3px solid #ccc;
+    border-top: none;
+}
+
+
