@@ -7,8 +7,6 @@
  #
  #
 
-# configuration - need change it
-
 
 include("config/config.php");
 include("$MT_HEADER");
@@ -28,11 +26,46 @@ function dirlist($dir) {
 	return $result;
 }
 
+
+
+function mess_error($m){
+	echo('
+	<div class="message">
+  		<div onclick="this.parentElement.style.display=\'none\'" class="toprightclose"></div>
+  		<p style="padding-left:40px;">'.$m.'</p>
+	</div>
+	');
+}
+
+
+function mess_ok($m){
+	echo('
+		<div class="card">
+  			<div onclick="this.parentElement.style.display=\'none\'" class="toprightclose"></div>
+  			<div class=card-header>
+  				<span onclick="var x=document.getElementById(\'cardbody\');if (x.style.display==\'none\'){x.style.display=\'block\'}else{x.style.display=\'none\'}"
+  				class="topleftmenu1"></span></div>
+  			<div class="cardbody" id="cardbody">
+  				<p style="padding-left:40px;padding-bottom:20px;">'.$m.'</p>
+  			</div>
+		</div>
+	');
+}
+
+
+
+
+
+
 $d=dirlist($MT_TASKS_ROOT);
+
+$ARCHIV=FALSE;
+
 
 # files
 $schemafile="./".$MT_TASKS_ROOT."/".$MT_SCHEMA_FILE;
-$taskfile=$MT_TASKS_ROOT."/".$MT_FIRST_TASKS_FILE;
+$taskfile=$MT_FIRST_TASKS_FILE;
+$taskfile=$MT_TASKS_ROOT."/".$taskfile;
 
 # delete task fromtable
 if ($_GET[$MT_PARAM_DEL]<>""){
@@ -60,14 +93,12 @@ if ($_GET[$MT_PARAM_DEL]<>""){
 		file_put_contents($taskfile,$tfa2);
 	}
 	$line++;
-	echo("<section id=message>$line - $L_DELETEDTASK</section>");
+	mess_ok("$line - $L_DELETEDTASK");
 }
 
 
 # new task from form
 if (isset($_POST["submitall"])){
-	echo("<section id=message>");
-
 	if (isset($_POST["userpass"])){
 		$p=$_POST["userpass"];
 		if (md5($p)==$MT_PASS){
@@ -83,62 +114,97 @@ if (isset($_POST["submitall"])){
 				$tf=file_get_contents($taskfile);
 				$tf=$tf.$new;
 				file_put_contents($taskfile,$tf);
-				echo($L_OK."<br />");
+				mess_ok($L_OK);
 			}
 		}else{
-			echo($L_NOACCESS."<br />");
+			mess_error($L_NOACCESS);
 		}
 	}
-	echo("</section>");
 }else{
 	if (isset($_POST["submitall"])){
-		echo("<section id=message>");
-		echo($L_NODATA."<br />");
-		echo("</section>");
+		mess_error($L_NODATA);
 	}
 }
 
 
 # archive form
 if (isset($_POST["submitar"])){
-	echo("<section id=message>");
-
 	if (isset($_POST["userpass"])){
 		$p=$_POST["userpass"];
 		if (md5($p)==$MT_PASS){
 			$d=date("YmdHis");
 			$arfile=$MT_TASKS_ROOT."/".$d;
 			if (copy($taskfile,$arfile)){
-				echo($L_OK."<br />");
+				mess_ok($L_OK);
 			}
 		}else{
-			echo($L_NOACCESS."<br />");
+			mess_error($L_NOACCESS);
 		}
 	}
-	echo("</section>");
+	if (isset($_POST["sect"])){
+		if (substr($_POST["sect"],0,1)=="2"){
+			$ARCHIVE=TRUE;
+			$taskfile=$MT_TASKS_ROOT."/".$_POST["sect"];
+			$taskfile=str_replace(":","",$taskfile);
+			$taskfile=str_replace(".","",$taskfile);
+			$taskfile=str_replace(" ","",$taskfile);
+		}
+	}
 }else{
 	if (isset($_POST["submitar"])){
-		echo("<section id=message>");
-		echo($L_NODATA."<br />");
-		echo("</section>");
+		mess_error($L_NODATA);
 	}
 }
 
 
 
 # load data from file
+$filterb=array();
+
+if ($ARCHIVE){
+	$n=substr($taskfile,strlen($MT_TASKS_ROOT)+1,strlen($taskfile));
+	$n=substr($n,0,4).".".substr($n,4,2).".".substr($n,6,2).". ".substr($n,8,2).":".substr($n,10,2);
+	$n=$L_ARCHIVEFILE." ".$n;
+	mess_ok($n);
+}
 
 if (file_exists($schemafile)){
 	if (file_exists($taskfile)){
 		$sch=file_get_contents($schemafile);
 		$scha=explode($MT_SEPARATE_CHAR,$sch);
-		echo("<section id=st>");
 		$db=count($scha);
-		echo("<table class=mt-table-all><thead><tr class=mt-red>");
+		for ($i=0;$i<$db;$i++){
+			if (substr($scha[$i],0,1)==$MT_SEPARATE_CHAR_FILTER){
+				$scha[$i]=substr($scha[$i],1,strlen($scha[$i])-1);
+				$filter[]=$i;
+			}
+		}
+  		//echo('<input class="" type="text" placeholder="'.$n.'" id="filterin" onkeyup="tfilter(1)">');
+  		echo('
+			<div class="card">
+  				<div class=card-header>
+  					<span onclick="cardopenclose(cardbodyf)" class="topleftmenu1"></span>'.$L_FILTER.'
+  					</div>
+  					<div class="cardbody" id="cardbodyf" style="display:none;"><div style="padding:10px;">
+  			');
+		$db=count($filter);
+		for ($i=0;$i<$db;$i++){
+			$n=$L_SEARCH." ".$scha[$filter[$i]];
+  			echo('<input class="" type="text" placeholder="'.$n.'" id="filterin'.$i.'" 
+  					onkeyup="tfilter(\'filterin'.$i.'\','.$filter[$i].')"
+  					onclick="this.value=\'\';tfilter(\'filterin'.$i.'\','.$filter[$i].')">');
+		}
+		echo('</div>');
+		echo('</div>');
+		echo('</div>');
+		$db=count($scha);
+		echo("<table id=tasktable class=mt-table-all><thead><tr class=mt-red>");
 		for ($i=0;$i<$db;$i++){
 			echo("<th>$scha[$i]</th>");
 		}
-		echo("<th>$L_DELETELINE</th>");
+		if (!$ARCHIVE){
+			echo("<th style=\"text-align:center;\" >$L_DELETELINE</th>");
+		}
 		echo("</tr></thead>");
 		$tf=file_get_contents($taskfile);
 		$tfa=explode(PHP_EOL,$tf);
@@ -151,65 +217,112 @@ if (file_exists($schemafile)){
 				for ($k=0;$k<$db2;$k++){
 					echo("<td>$tfal[$k]</td>");
 				}
-				$link=htmlspecialchars($tfa[$i]);
-				$link=str_replace(" ","_",$link);
-				echo("<td><a href=?$MT_PARAM_DEL=$i&$MT_PARAM_DATA=$link><button class=button>$L_DELETELINEBUTTON</button></a></td>");
+				if (!$ARCHIVE){
+					$link=htmlspecialchars($tfa[$i]);
+					$link=str_replace(" ","_",$link);
+					echo("<td width=10% style=\"text-align:center;\" ><a href=?$MT_PARAM_DEL=$i&$MT_PARAM_DATA=$link>
+							<button class=bbutton>$L_DELETELINEBUTTON</button></a></td>");
+				}
 				echo("</tr>");
 			}
 		}
 		echo("</table>");
-		echo("</section>");
+		
+		
 
-		echo("<section id=s1>");
-		echo("<button class=accordion>$L_NEWDATA</button>");
-		echo("<div class=panel>");
-		echo("<section id=form1>");
+		echo('<div class="spaceline100"></div>');
+		
+		
+
+		echo('
+			<div class="card">
+  				<div class=card-header>
+  					<span onclick="cardopenclose(cardbody0)" class="topleftmenu1"></span>'.$L_NEWDATA.'
+  					</div>
+  					<div class="cardbody" id="cardbody0" style="display:none;"><div style="padding:10px;">
+  			');
 		echo("<form action=$MT_ADMINFILE id=1 method=post enctype=multipart/form-data>");
-		echo("<br />");
 		echo("<label for=userpass>$L_PASS : </label>");
-		echo("<input name=userpass id=userpass type=password placeholder=\"$L_PASS\"><br /><br />");
+		echo("<input name=userpass id=userpass type=password placeholder=\"$L_PASS\">");
 		$db=count($scha);
 		for ($i=0;$i<$db;$i++){
 			echo("<label for=$i>$scha[$i] :</label>");
-			echo("<input name=$i id=$i type=text placeholder=\"$scha[$i]\"><br /><br />");
+			echo("<input name=$i id=$i type=text placeholder=\"$scha[$i]\">");
 		}
 		echo("<input type=submit id=submitall name=submitall value=$L_BUTTON_ALL>");
-		echo("</form><br />");
-		echo("</section>");
-		echo("</div>");
-		echo("</section>");
+		echo("</form>");		
+		echo('
+  					</div>
+  					<div class=card-footer><span class=button_ok onclick="cardopenclose(cardbody0)"></span></div>
+  				</div></div>
+			');
 
 
-		echo("<section id=s1>");
-		echo("<button class=accordion>$L_NEWARCHIV</button>");
-		echo("<div class=panel>");
-		echo("<br />");
-		echo("<br />");
+		echo('<div class="spaceline"></div>');
+
+
+
+
+
+		echo('
+			<div class="card">
+  				<div class=card-header>
+  					<span onclick="cardopenclose(cardbody1)" class="topleftmenu1"></span>'.$L_NEWARCHIV.'
+  					</div>
+  					<div class="cardbody" id="cardbody1" style="display:none;"><div style="padding:10px;">
+  			');
+		if (!$ARCHIVE){
+			echo("<form action=$MT_ADMINFILE id=2 method=post enctype=multipart/form-data>");
+			echo("<label for=userpass>$L_PASS : </label>");
+			echo("<input name=userpass id=userpass type=password placeholder=\"$L_PASS\">");
+			echo("<input type=submit id=submitar name=submitar value=$L_BUTTON_ALL>");
+			echo("</form>");
+		}
 		echo("<form action=$MT_ADMINFILE id=2 method=post enctype=multipart/form-data>");
-		echo("<br />");
-		echo("<label for=userpass>$L_PASS : </label>");
-		echo("<input name=userpass id=userpass type=password placeholder=\"$L_PASS\"><br /><br />");
+		echo("<label for=userpass>$L_OPENARCHIVE</label>");
+		echo("<select name=sect id=sect style='padding-top:20px;'>");
+		echo("<option value='$L_ACTUAL'>$L_ACTUAL");
+		$db=count($d);
+		for ($i=0;$i<$db;$i++){
+			if (substr($d[$i],0,1)=="2") {
+				$n=substr($d[$i],0,4).".".substr($d[$i],4,2).".".substr($d[$i],6,2).". ".substr($d[$i],8,2).":".substr($d[$i],10,2);
+				echo("<option value=$d[$i]>$n");
+			}
+		}
+		echo("</select>");
 		echo("<input type=submit id=submitar name=submitar value=$L_BUTTON_ALL>");
-		echo("</form><br />");
-		echo("<br />");
-		echo("</div>");
-		echo("</section>");
+		echo("</form>");
+		echo('
+  					</div>
+  					<div class=card-footer><span class=button_ok onclick="cardopenclose(cardbody1)"></span></div>
+  				</div></div>
+			');
 
 
-		echo("<section id=s1>");
-		echo("<button class=accordion>$L_PRINT</button>");
-		echo("<div class=panel>");
-		echo("<br />");
+
+		echo('<div class="spaceline"></div>');
+
+		echo('
+			<div class="card">
+  				<div class=card-header>
+  					<span onclick="cardopenclose(cardbody2)" class="topleftmenu1"></span>'.$L_PRINT.'
+  					</div>
+  					<div class="cardbody" id="cardbody2" style="display:none;"><div style="padding:10px;">
+  			');
 		echo("<a href=$MT_PRINTFILE><input type=submit id=submitar name=submitar value=$L_PRINT></a>");
-		echo("<br />");
-		echo("</div>");
+		echo('
+  					</div>
+  					<div class=card-footer><span class=button_ok onclick="cardopenclose(cardbody2)"></span></div>
+  				</div></div>
+			');
 
-		echo("</section>");
+
+		echo('<div class="spaceline"></div>');
 	}else{
-		echo("<section id=message>$L_TASKFILENOTFOUND</section>");
+		mess_error($L_TASKFILENOTFOUND);
 	}
 }else{
-	echo("<section id=message>$L_FILENOTFOUND</section>");
+	mess_error($L_FILENOTFOUND);
 }
 
 include("$MT_JS_END");

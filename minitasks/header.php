@@ -10,9 +10,23 @@
 	<style><?php include("$MT_CSS"); ?></style>
 <body>
 
-<section id=h1>
-</section>
 
-<section id=h1>
-<center><h1><?php echo($L_SITENAME); ?></h1></center>
-</section>
+
+
+<header>
+<div class="menu">
+<ul class="sidenav">
+  <li><a class="active" href="<?php echo($MT_SITE_HOME); ?>"><?php echo($L_SITEHOME); ?></a></li>
+  <li><a href="<?php echo("index.html"); ?>"><?php echo($L_MTHOME); ?></a></li>
+  <li style="float:right;top:5px;"><div class="search_icon" onclick="cardopenclose(cardbodyf)"></div></li>
+</ul>
+</div>
+
+</header>
+
+
+<div class="content">
+
+<h1><?php echo($L_SITENAME); ?></h1>
+
+<div class="spaceline100"></div>

@@ -31,7 +31,11 @@ if (file_exists($schemafile)){
 		$db=count($scha);
 		echo("<table class=mt-table-all><thead><tr class=mt-red>");
 		for ($i=0;$i<$db;$i++){
-			echo("<th>$scha[$i]</th>");
+			$n=$scha[$i];
+			if (substr($n,0,1)==$MT_SEPARATE_CHAR_FILTER){
+				$n=substr($n,1,strlen($n));
+			}
+			echo("<th>$n</th>");
 		}
 		echo("</tr></thead>");
 		$tf=file_get_contents($taskfile);

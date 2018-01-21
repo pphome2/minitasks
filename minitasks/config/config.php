@@ -9,7 +9,7 @@
 
 # configuration - need change it
 
-$COPYRIGHT="© 2018. <a href=https://github.com/pphome2/minitasks>MiniTasks</a>";
+$COPYRIGHT="© 2018. <a target=_blank href=https://github.com/pphome2/minitasks>MiniTasks</a>";
 
 # need md5 passcode
 $MT_PASS="196f9674066aa625b539c2d677d0b676";
@@ -22,6 +22,7 @@ $MT_SCHEMA_FILE="schema";
 $MT_FIRST_TASKS_FILE="default";
 
 $MT_SEPARATE_CHAR="|";
+$MT_SEPARATE_CHAR_FILTER="#";
 $MT_PARAM_DEL="del";
 $MT_PARAM_DATA="dal";
 
@@ -57,6 +58,14 @@ $L_NEWDATA="Új feladat";
 $L_NEWARCHIV="Adatok archiválása";
 $L_PASS="Hozzáférési kód";
 $L_BUTTON_ALL="Mehet";
+
+$L_SEARCH="Keresés:";
+
+$L_FILTER="Adatok szűrése";
+$L_ACTUAL="Aktuális adatok";
+
+$L_OPENARCHIVE="Megnyitás:";
+$L_ARCHIVEFILE="Archiv fájl:";
 
 $L_PRINT="Nyomtatás";
 
