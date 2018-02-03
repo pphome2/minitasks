@@ -24,6 +24,9 @@ $taskfile=$MT_TASKS_ROOT."/".$MT_FIRST_TASKS_FILE;
 # load data from file
 
 if (file_exists($schemafile)){
+	if (!file_exists($taskfile)){
+		touch($taskfile);
+	}
 	if (file_exists($taskfile)){
 		$sch=file_get_contents($schemafile);
 		$scha=explode($MT_SEPARATE_CHAR,$sch);

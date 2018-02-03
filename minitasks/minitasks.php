@@ -9,6 +9,7 @@
 
 
 include("config/config.php");
+include("config/$MT_LANGFILE");
 include("$MT_HEADER");
 include("$MT_JS_BEGIN");
 
@@ -169,6 +170,9 @@ if ($ARCHIVE){
 }
 
 if (file_exists($schemafile)){
+	if (!file_exists($taskfile)){
+		touch($taskfile);
+	}
 	if (file_exists($taskfile)){
 		$sch=file_get_contents($schemafile);
 		$scha=explode($MT_SEPARATE_CHAR,$sch);
@@ -180,23 +184,25 @@ if (file_exists($schemafile)){
 			}
 		}
   		//echo('<input class="" type="text" placeholder="'.$n.'" id="filterin" onkeyup="tfilter(1)">');
-  		echo('
-			<div class="card">
-  				<div class=card-header>
-  					<span onclick="cardopenclose(cardbodyf)" class="topleftmenu1"></span>'.$L_FILTER.'
-  					</div>
-  					<div class="cardbody" id="cardbodyf" style="display:none;"><div style="padding:10px;">
-  			');
 		$db=count($filter);
-		for ($i=0;$i<$db;$i++){
-			$n=$L_SEARCH." ".$scha[$filter[$i]];
-  			echo('<input class="" type="text" placeholder="'.$n.'" id="filterin'.$i.'" 
-  					onkeyup="tfilter(\'filterin'.$i.'\','.$filter[$i].')"
-  					onclick="this.value=\'\';tfilter(\'filterin'.$i.'\','.$filter[$i].')">');
+		if ($db>0){
+  			echo('
+				<div class="card">
+  					<div class=card-header>
+  						<span onclick="cardopenclose(cardbodyf)" class="topleftmenu1"></span>'.$L_FILTER.'
+  						</div>
+  						<div class="cardbody" id="cardbodyf" style="display:none;"><div style="padding:10px;">
+  				');
+			for ($i=0;$i<$db;$i++){
+				$n=$L_SEARCH." ".$scha[$filter[$i]];
+  				echo('<input class="" type="text" placeholder="'.$n.'" id="filterin'.$i.'" 
+  						onkeyup="tfilter(\'filterin'.$i.'\','.$filter[$i].')"
+  						onclick="this.value=\'\';tfilter(\'filterin'.$i.'\','.$filter[$i].')">');
+			}
+			echo('</div>');
+			echo('</div>');
+			echo('</div>');
 		}
-		echo('</div>');
-		echo('</div>');
-		echo('</div>');
 		$db=count($scha);
 		echo("<table id=tasktable class=mt-table-all><thead><tr class=mt-red>");
 		for ($i=0;$i<$db;$i++){
