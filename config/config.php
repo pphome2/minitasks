@@ -8,14 +8,18 @@
  #
 
 # configuration - need change it
+# need change schema file in task directory
 
-$COPYRIGHT="© 2018. <a target=_blank href=https://github.com/pphome2/minitasks>MiniTasks</a>";
+$COPYRIGHT="© 2018. <a href=https://github.com/pphome2/minitasks>MiniTasks</a>";
 
-# need md5 passcode
-$MT_PASS="196f9674066aa625b539c2d677d0b676";
+# need md5 passcode -- password
+$MT_PASS="5f4dcc3b5aa765d61d8327deb882cf99";
 
-$MT_SITENAME="MiniTasks -example.com";
-$MT_SITE_HOME="http://www.example.com";
+## auto logout - second
+$LOGIN_TIMEOUT=600;
+
+$MT_SITENAME="MiniTasks - Test";
+$MT_SITE_HOME="http://www.google.com";
 $MT_TASKS_ROOT="tasks";
 $MT_CONFIG_DIR="config";
 $MT_SCHEMA_FILE="schema";
@@ -37,7 +41,6 @@ $MT_ADMINFILE="minitasks.php";
 $MT_PRINTFILE="print.php";
 
 # language
-
-$MT_LANGFILE="en.php";
+$MT_LANGFILE="hu.php";
 
 ?>

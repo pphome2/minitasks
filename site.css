@@ -1,7 +1,52 @@
 
-body {margin:0px;}
-.content {margin:20px;padding:20px;}
-.menu {margin:0;padding:0;}
+body {
+    margin:0px;
+    font-size:16px;
+}
+
+.upload-btn-wrapper {
+  width:100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+
+.all-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.content {
+    margin:20px;
+    padding:20px;
+    flex: 1 0 auto;
+}
+
+.menu {
+    margin:0;
+    padding:0;
+}
 
 footer {
     margin: 0;
@@ -9,7 +54,8 @@ footer {
     background-color: #333;
     display: block;
     color: white;
-    padding: 14px 16px;
+    padding-left: 20px;
+    cursor:default;
 }
 
 p a{
@@ -72,21 +118,21 @@ li.dropdown {
 }
 
 .menuli{
-	display:block;
-	width:100%;
-	text-decoration: none;
-	background-color:white;
-	color:black;	
+    display:block;
+    width:100%;
+    text-decoration: none;
+    background-color:white;
+    color:black;
 }
 
 .menuli a{
-	text-decoration: none;
-	color:black;
-	width:80%;
-	text-align:left;
+    text-decoration: none;
+    color:black;
+    width:80%;
+    text-align:left;
 }
 .menuli a:hover{
-	background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 @media screen (max-width: 2900px) {
@@ -173,7 +219,7 @@ li:last-child {
 }
 
 .topleftclose {
-	padding-right:5px;
+    padding-right:5px;
 }
 
 .topleftclose:before {
@@ -267,14 +313,14 @@ li:last-child {
     -ms-transform:translate(-50%,0%);
 }
 .badge{
-	background-color:#000;
-	color:black;
-	display:inline-block;
-	padding-left:8px;
-	padding-right:8px;
-   border:1px solid;
-	text-align:center;
-	border-radius:50%
+    background-color:#000;
+    color:black;
+    display:inline-block;
+    padding-left:8px;
+    padding-right:8px;
+    border:1px solid;
+    text-align:center;
+    border-radius:50%
 }
 .badge-white{opacity:1}
 .badge-nowhite{opacity:0.5}
@@ -304,9 +350,9 @@ li:last-child {
 }
 
 .mess-body {
-	background-color:yellow;
-	color:blue;
-	padding:20px;
+    background-color:yellow;
+    color:blue;
+    padding:20px;
 }
 
 
@@ -387,7 +433,7 @@ li:last-child {
 }
 .card-footer2 {
     padding:10px;
-	 text-align:right;
+    text-align:right;
     background-color:#2196F3;
     color:white;
 }
@@ -407,15 +453,15 @@ li:last-child {
    font-size:1.2em;
 }
 .card-button:focus {
-	color:black;
-	background-color:white;
-	outline:none;
+   color:black;
+   background-color:white;
+   outline:none;
 }
 
 .card-header-tab button.active {
-	color:black;
-	background-color:white;
-	outline:none;
+   color:black;
+   background-color:white;
+   outline:none;
 }
 
 .button_ok {
@@ -450,20 +496,27 @@ li:last-child {
 .search_icon{
     padding-right:15px;
     padding-left:15px;
-    padding-top:10px;
+    padding-top:15px;
+    padding-bottom:12px;
     color: white;
-    text-decoration:bold;
 }
+
 .search_icon:after{
-    content:"\1F50D";
+    ccontent:"\1F50D";
+    font-size:16px;
+    content:"\26B2";
+}
+
+.search_icon:hover{
+   background-color:red;
 }
 
 
 .mt-table,.mt-table-all {
-	border-collapse:collapse;
-	border-spacing:0;
-	width:100%;
-	display:table
+   border-collapse:collapse;
+   border-spacing:0;
+   width:100%;
+   display:table
 }
 .mt-table-all { border:1px solid #ccc }
 .mt-bordered tr,.mt-table-all tr { border-bottom:1px solid #ddd }
@@ -473,11 +526,12 @@ li:last-child {
 .mt-hoverable tbody tr:hover,.mt-ul.mt-hoverable li:hover{background-color:#ccc}
 .mt-centered tr th,.mt-centered tr td{text-align:center}
 .mt-table td,.mt-table th,.mt-table-all td,.mt-table-all th {
-	padding:8px 8px;
-	display:table-cell;
-	text-align:left;
-	vertical-align:top
+   padding:8px 8px;
+   display:table-cell;
+   text-align:left;
+   vertical-align:middle;
 }
+
 .mt-table th:first-child,.mt-table td:first-child,.mt-table-all th:first-child,.mt-table-all td:first-child{padding-left:16px}
 .mt-red,.mt-hover-red:hover{color:#fff!important;background-color:#f44336!important}
 
@@ -512,19 +566,30 @@ input[type=submit] {
     cursor: pointer;
 }
 
+.inputbutton {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 input[type=submit]:hover {
     background-color: #45a049;
 }
 
 #inputlabel {
-	width: 20%;
-	border: 1px solid;
+   width: 20%;
+   border: 1px solid;
 }
 
 
 .bbutton {
-	float: middle;
-	padding: 2px 5px 2px 5px;
+   float: middle;
+   padding: 2px 5px 2px 5px;
    color: white;
    background-color: black;
    display: inline-block;
@@ -538,8 +603,8 @@ input[type=submit]:hover {
 
 
 img {
-	cursor: pointer;
-	width:100%;
+   cursor: pointer;
+   width:100%;
 }
 
 .imgblock {
@@ -553,79 +618,79 @@ img {
 /* Modal */
 
 .modal, .modalblack {
-	z-index:3;
-	display:none;
-	padding-top:100px;
-	position:fixed;
-	left:0;top:0;
-	width:100%;
-	height:100%;
-	overflow:auto;
-	background-color:rgb(0,0,0);
-	background-color:rgba(0,0,0,0.4);
+   z-index:3;
+   display:none;
+   padding-top:100px;
+   position:fixed;
+   left:0;top:0;
+   width:100%;
+   height:100%;
+   overflow:auto;
+   background-color:rgb(0,0,0);
+   background-color:rgba(0,0,0,0.4);
 }
 
 .modalblack {
-	background-color:black;
+   background-color:black;
 }
 
 .modal-content, .modal-content-black, .modalfull{
-	margin:auto;
-	background-color:#fff;
-	position:relative;
-	padding:0;
-	outline:0;
-	width:50%;
+   margin:auto;
+   background-color:#fff;
+   position:relative;
+   padding:0;
+   outline:0;
+   width:50%;
 }
 .modal-content-black {
-	background-color:black;
+   background-color:black;
 }
 
 .modalfull {
-	width:80%;
+   width:80%;
 }
 
 .imghover:hover {
-	box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+   box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
 }
 
 .lightfull {
-	opacity:1;
+   opacity:1;
 }
 
 .lighthalf {
-	opacity:0.2;
+   opacity:0.2;
 }
 
 .spaceline {
-	padding-top:25px;
+   padding-top:25px;
 }
 
 .spaceline50 {
-	padding-top:50px;
+   padding-top:50px;
 }
 
 .spaceline100 {
-	padding-top:100px;
+   padding-top:100px;
 }
 
 .slideimg {
-	width:100%;
-	display:none;
+   width:100%;
+   display:none;
 }
 
 
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;#c3c3c3
+   width: 0.1px;
+   height: 0.1px;
+   opacity: 0;
+   overflow: hidden;
+   position: absolute;
+   z-index: -1;#c3c3c3
 }
 
 .inputfile + label {
-	padding: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
     color: white;
     background-color: black;
     display: inline-block;

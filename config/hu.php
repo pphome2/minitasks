@@ -7,7 +7,7 @@
  #
  #
 
-$L_SITENAME="Példa feladatlista";
+$L_SITENAME="Feladatlista";
 $L_SITEHOME="Nyitólap";
 $L_MTHOME="Feladatok";
 $L_ADMINISTRATION="Adminisztráció";
