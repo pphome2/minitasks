@@ -31,6 +31,20 @@ Egyszerű:
 - a táblázat fejrésze a `tasks\schema` fájlban található
 
 
+### Működés
+
+Az adatok a `tasks` könyvtárban tárolódnak. Az archiválás funkció ide hoz
+létre új fájlt, melynek neve a dátumból és a mentés idejéből keltkezik.
+A betöltött archiv adatok már nem módosíthatóak.
+
+A táblázat fejrésze a `tasks\schema` fájlban található, az egyes oszlopokat `|`
+jellel kell elválasztani. Amelyik oszlop neve elé a `#` jel kerül, az szűrhető
+oszlop lesz.
+
+Minden beállítás a `config\config.php` fájlban tárolódik. Feltöltés után itt
+állítsuk be a személyes dolgainkat. A jelszavak MD5 kódolással tárolhatók. Az
+`admin` felhasználó tud csak törölni bejegyzést, új bejegyzást a felhasználó is 
+tud felvinni.
 
 
 ## One page tasks manager
