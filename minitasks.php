@@ -10,8 +10,28 @@
 
 include("config/config.php");
 include("config/$MT_LANGFILE");
+
+if (isset($_POST[$MT_STYLEPARAM_NAME])){
+    $styleindex=htmlspecialchars($_POST[$MT_STYLEPARAM_NAME]);
+}else{
+    if (isset($_GET[$MT_STYLEPARAM_NAME])){
+        $styleindex=htmlspecialchars($_GET[$MT_STYLEPARAM_NAME]);
+    }else{
+	$styleindex=0;
+    }
+}
+if ($styleindex>count($MT_CSS)){
+    $styleindex=0;
+}
+
 include("$MT_HEADER");
 include("$MT_JS_BEGIN");
+
+
+echo("<div class=\"content\">");
+echo("<h1>".$L_SITENAME."</h1>");
+echo("<div class=\"spaceline\"></div>");
+
 
 
 function dirlist($dir) {
@@ -28,12 +48,21 @@ function dirlist($dir) {
 }
 
 
+function vinput($d) {
+    $d=trim($d);
+    $d=stripslashes($d);
+    $d=strip_tags($d);
+    $d=htmlspecialchars($d);
+    return $d;
+}
+
+
 
 function mess_error($m){
 	echo('
 	<div class="message">
   		<div onclick="this.parentElement.style.display=\'none\'" class="toprightclose"></div>
-  		<p style="padding-left:40px;">'.$m.'</p>
+  		<p class="insidecontent">'.$m.'</p>
 	</div>
 	');
 }
@@ -47,7 +76,7 @@ function mess_ok($m){
   				<span onclick="var x=document.getElementById(\'cardbody\');if (x.style.display==\'none\'){x.style.display=\'block\'}else{x.style.display=\'none\'}"
   				class="topleftmenu1"></span></div>
   			<div class="cardbody" id="cardbody">
-  				<p style="padding-left:40px;padding-bottom:20px;">'.$m.'</p>
+  				<p class="insidecontent">'.$m.'</p>
   			</div>
 		</div>
 	');
@@ -62,21 +91,33 @@ $passw="";
 
 if (isset($_POST["password"])){
 	$passw=md5($_POST["password"]);
-	if ($passw==$MT_PASS){
+	$passw=vinput($passw);
+	if ($passw==$MT_ADMIN_PASS){
 		$loggedin=TRUE;
+		$ADMIN_USER=true;
+	}else{
+		if ($passw==$MT_PASS){
+			$loggedin=TRUE;
+			$ADMIN_USER=false;
+		}
 	}
 }
 if (isset($_POST["passwordh"])){
 	$passw=$_POST["passwordh"];
-	if ($passw==$MT_PASS){
+	$passw=vinput($passw);
+	if (($passw==$MT_PASS)or($passw==$MT_ADMIN_PASS)){
 		if (isset($_POST["utime"])){
 			$outime=$_POST["utime"];
+			$outime=vinput($outime);
 			$utime2=$utime-$outime;
 			if ($utime2<$LOGIN_TIMEOUT){
 				$loggedin=TRUE;
 			}
 		}else{
 			$loggedin=TRUE;
+		}
+		if ($passw==$MT_ADMIN_PASS){
+			$ADMIN_USER=TRUE;
 		}
 	}
 }
@@ -96,7 +137,7 @@ if ($loggedin){
 	$taskfile=$MT_TASKS_ROOT."/".$taskfile;
 	# delete task fromtable
 	if ($_POST["del"]<>""){
-		$line=$_POST["del"];
+		$line=vinput($_POST["del"]);
 		if (file_exists($taskfile)){
 			$tf=file_get_contents($taskfile);
 			$tfa=explode(PHP_EOL,$tf);
@@ -118,12 +159,12 @@ if ($loggedin){
 	}
 	# new task from form
 	if (isset($_POST["submitall"])){
-		$new=$_POST["0"].$MT_SEPARATE_CHAR;
-		$new=$new.$_POST["1"].$MT_SEPARATE_CHAR;
-		$new=$new.$_POST["2"].$MT_SEPARATE_CHAR;
-		$new=$new.$_POST["3"].$MT_SEPARATE_CHAR;
-		$new=$new.$_POST["4"].$MT_SEPARATE_CHAR;
-		$new=$new.$_POST["5"].PHP_EOL;
+		$new=vinput($_POST["0"]).$MT_SEPARATE_CHAR;
+		$new=$new.vinput($_POST["1"]).$MT_SEPARATE_CHAR;
+		$new=$new.vinput($_POST["2"]).$MT_SEPARATE_CHAR;
+		$new=$new.vinput($_POST["3"]).$MT_SEPARATE_CHAR;
+		$new=$new.vinput($_POST["4"]).$MT_SEPARATE_CHAR;
+		$new=$new.vinput($_POST["5"]).PHP_EOL;
 		$new=strip_tags($new);
 		if (file_exists($taskfile)){
 			$tf=file_get_contents($taskfile);
@@ -143,7 +184,7 @@ if ($loggedin){
 		if (isset($_POST["sect"])){
 			if (substr($_POST["sect"],0,1)=="2"){
 				$ARCHIVE=TRUE;
-				$taskfile=$MT_TASKS_ROOT."/".$_POST["sect"];
+				$taskfile=$MT_TASKS_ROOT."/".vinput($_POST["sect"]);
 				$taskfile=str_replace(":","",$taskfile);
 				$taskfile=str_replace(".","",$taskfile);
 				$taskfile=str_replace(" ","",$taskfile);
@@ -188,10 +229,11 @@ if ($loggedin){
 			if ($db>0){
 				echo('
 					<div class="card">
-						<div class=card-header>
-							<span onclick="cardopenclose(cardbodyf)" class="topleftmenu1">'.$L_FILTER.'</span>
-							</div>
-						<div class="cardbody" id="cardbodyf" style="display:none;"><div style="padding:10px;">
+						<span onclick="cardopenclose(cardbodyf)">
+							<div class="card-header topleftmenu1">'.$L_FILTER.'
+						</div>
+						</span>
+						<div class="cardbody" id="cardbodyf" style="display:none;"><div class="insidecontent">
 				');
 				for ($i=0;$i<$db;$i++){
 					$n=$L_SEARCH." ".$scha[$filter[$i]];
@@ -224,15 +266,20 @@ if ($loggedin){
 						echo("<td>$tfal[$k]</td>");
 					}
 					if (!$ARCHIVE){
-						$link=htmlspecialchars($tfa[$i]);
-						$link=str_replace(" ","_",$link);
-						echo("<td width=10% style=\"text-align:center;\" >");
-						echo("<form action=$MT_ADMINFILE id=2 method=post enctype=multipart/form-data>");
-						echo("    <input type='hidden' name='passwordh' id='passwordh' value='$passw'>");
-						echo("    <input type='hidden' name='utime' id='passwordh' value='$utime'>");
-						echo("    <input type='hidden' name='del' id='del' value='$i'>");
-						echo("<input type=submit id=submitdel name=submitdel value='$L_DELETELINEBUTTON'>");
-						echo("</form>");
+						if ($ADMIN_USER){
+							$link=htmlspecialchars($tfa[$i]);
+							$link=str_replace(" ","_",$link);
+							echo("<td width=10% class=\"center\">");
+							echo("<form action=$MT_ADMINFILE id=2 method=post enctype=multipart/form-data>");
+							echo("	<input type='hidden' name='passwordh' id='passwordh' value='$passw'>");
+							echo("	<input type='hidden' name='$MT_STYLEPARAM_NAME' id='$MT_STYLEPARAM_NAME' value='$styleindex'>");
+							echo("	<input type='hidden' name='utime' id='passwordh' value='$utime'>");
+							echo("	<input type='hidden' name='del' id='del' value='$i'>");
+							echo("	<input type=submit id=submitdel name=submitdel value='$L_DELETELINEBUTTON'>");
+							echo("</form></td>");
+						}else{
+							echo("<td width=10% class=\"center\">-</td>");
+						}
 					}
 					echo("</tr>");
 				}
@@ -241,76 +288,82 @@ if ($loggedin){
 			echo('<div class="spaceline100"></div>');
 			echo('
 				<div class="card">
-					<div class=card-header>
-						<span onclick="cardopenclose(cardbody0)" class="topleftmenu1">'.$L_NEWDATA.'</span>
+					<span onclick="cardopenclose(cardbody0)">
+						<div class="card-header topleftmenu1">'.$L_NEWDATA.'
 						</div>
-						<div class="cardbody" id="cardbody0" style="display:none;"><div style="padding:10px;">
+					</span>
+					<div class="cardbody" id="cardbody0" style="display:none;"><div class="insidecontent">
 			');
 			echo("<form action=$MT_ADMINFILE id=1 method=post enctype=multipart/form-data>");
 			echo("    <input type='hidden' name='passwordh' id='passwordh' value='$passw'>");
+			echo("    <input type='hidden' name='$MT_STYLEPARAM_NAME' id='$MT_STYLEPARAM_NAME' value='$styleindex'>");
 			echo("    <input type='hidden' name='utime' id='passwordh' value='$utime'>");
 			$db=count($scha);
 			for ($i=0;$i<$db;$i++){
 				echo("<label for=$i>$scha[$i] :</label>");
-				echo("<input name=$i id=$i type=text placeholder=\"$scha[$i]\">");
+				if (($AUTO_DATE_TO_FIRST)and($i==0)){
+					$date=date('Y.m.d.');
+					echo("<input name=$i id=$i type=text value=\"$date\" disabled>");
+				}else{
+					echo("<input name=$i id=$i type=text placeholder=\"$scha[$i]\">");
+				}
 			}
 			echo("<input type=submit id=submitall name=submitall value=$L_BUTTON_ALL>");
 			echo("</form>");
-			echo('
-						</div>
-						<div class=card-footer><span class=button_ok onclick="cardopenclose(cardbody0)"></span></div>
-					</div></div>
-			');
+			echo('</div></div></div>');
 			echo('<div class="spaceline"></div>');
 			echo('
 				<div class="card">
-					<div class=card-header>
-						<span onclick="cardopenclose(cardbody1)" class="topleftmenu1">'.$L_NEWARCHIV.'</span>
+					<span onclick="cardopenclose(cardbody1)">
+						<div class="card-header topleftmenu1">'.$L_NEWARCHIV.'
 						</div>
-						<div class="cardbody" id="cardbody1" style="display:none;"><div style="padding:10px;">
+					</span>
+					<div class="cardbody" id="cardbody1" style="display:none;"><div class="insidecontent">
 				');
 			if (!$ARCHIVE){
 				echo("<form action=$MT_ADMINFILE id=2 method=post enctype=multipart/form-data>");
 				echo("    <input type='hidden' name='passwordh' id='passwordh' value='$passw'>");
+				echo("    <input type='hidden' name='$MT_STYLEPARAM_NAME' id='$MT_STYLEPARAM_NAME' value='$styleindex'>");
 				echo("    <input type='hidden' name='utime' id='passwordh' value='$utime'>");
 				echo("<input type=submit id=submitar name=submitar value=$L_BUTTON_ALL>");
 				echo("</form>");
 			}
 			echo("<form action=$MT_ADMINFILE id=2 method=post enctype=multipart/form-data>");
 			echo("    <input type='hidden' name='passwordh' id='passwordh' value='$passw'>");
+			echo("    <input type='hidden' name='$MT_STYLEPARAM_NAME' id='$MT_STYLEPARAM_NAME' value='$styleindex'>");
 			echo("    <input type='hidden' name='utime' id='passwordh' value='$utime'>");
 			echo("<label>$L_OPENARCHIVE</label>");
-			echo("<select name=sect id=sect style='padding-top:20px;'>");
+			echo("<select name=sect id=sect>");
 			echo("<option value='$L_ACTUAL'>$L_ACTUAL");
+			rsort($d);
 			$db=count($d);
+			if ($db>$MT_ARCHIVE_MAXNUM){
+				$dbx=$MT_ARCHIVE_MAXNUM;
+			}else{
+				$dbx=$db;
+			}
 			for ($i=0;$i<$db;$i++){
-				if ((substr($d[$i],0,1)=="2")and(strlen($d[$i])>5)) {
+				if ((substr($d[$i],0,1)=="2")and(strlen($d[$i])>5)and($dbx>0)) {
 					$n=substr($d[$i],0,4).".".substr($d[$i],4,2).".".substr($d[$i],6,2).". ".substr($d[$i],8,2).":".substr($d[$i],10,2);
 					echo("<option value=$d[$i]>$n");
+					$dbx--;
 				}
 			}
 			echo("</select>");
 			echo("<input type=submit id=submitar name=submitar value=$L_BUTTON_ALL>");
 			echo("</form>");
-			echo('
-						</div>
-						<div class=card-footer><span class=button_ok onclick="cardopenclose(cardbody1)"></span></div>
-					</div></div>
-				');
+			echo('</div></div></div>');
 			echo('<div class="spaceline"></div>');
 			echo('
 				<div class="card">
-					<div class=card-header>
-						<span onclick="cardopenclose(cardbody2)" class="topleftmenu1">'.$L_PRINT.'</span>
+					<span onclick="cardopenclose(cardbody2)">
+						<div class="card-header topleftmenu1">'.$L_PRINT.'
 						</div>
-						<div class="cardbody" id="cardbody2" style="display:none;"><div style="padding:10px;">
+					</span>
+					<div class="cardbody" id="cardbody2" style="display:none;"><div class="insidecontent">
 			');
-			echo("<a href=$MT_PRINTFILE><input type=submit id=submitar name=submitar value=$L_PRINT></a>");
-			echo('
-					</div>
-					<div class=card-footer><span class=button_ok onclick="cardopenclose(cardbody2)"></span></div>
-				</div></div>
-			');
+			echo("<div class=insidecontent><a target=_blank href=$MT_PRINTFILE><input type=submit id=submitar name=submitar value=$L_PRINT></a></div>");
+			echo('</div></div></div>');
 			echo('<div class="spaceline"></div>');
 		}else{
 			mess_error($L_TASKFILENOTFOUND);
@@ -321,8 +374,9 @@ if ($loggedin){
 }else{
 	echo("<div class=spaceline100></div>");
 	echo("<form  method='post' enctype='multipart/form-data'>");
+	echo("    <input type='hidden' name='$MT_STYLEPARAM_NAME' id='$MT_STYLEPARAM_NAME' value='$styleindex'>");
 	echo("    $L_PASS:");
-	echo("    <input type='password' name='password' id='password'>");
+	echo("    <input type='password' name='password' id='password' autofocus>");
 	echo("<div class=spaceline></div>");
 	echo("    <input type='submit' value='$L_BUTTON_ALL' name='submit'>");
 	echo("</form>");

@@ -12,9 +12,10 @@
 
 include("config/config.php");
 
-echo("<html><head><title>$MT_SITENAME</title><style>");
-include("$MT_CSS2");
-echo("</style></head><body onclick=\"window.close();\">");
+echo("<html><head><style>");
+include("$MT_CSS3");
+echo("</style></head><body onclick=\"window.close;\">");
+echo("<a href=$MT_ADMINFILE>");
 
 # files
 $schemafile="./".$MT_TASKS_ROOT."/".$MT_SCHEMA_FILE;
@@ -64,9 +65,6 @@ if (file_exists($schemafile)){
 	echo("<section id=message>$L_FILENOTFOUND</section>");
 }
 
-
-echo("<script>window.print();</script>");
-
-echo("</body></html>");
+echo("</a></body></html>");
 
 ?>

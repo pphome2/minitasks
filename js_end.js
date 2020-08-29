@@ -29,10 +29,6 @@ function opentab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-
 
 // filter table
 
@@ -54,5 +50,7 @@ function tfilter(inname,ind) {
   }
 }
 
+
+setTimeout(function () { window.location.href = "<?php echo($MT_ADMINFILE.'?'.$MT_STYLEPARAM_NAME.'='.$styleindex); ?>"; }, <?php echo((($LOGIN_TIMEOUT+1)*1000)); ?>);
 
 </script>

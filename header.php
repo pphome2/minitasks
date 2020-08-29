@@ -5,10 +5,10 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="config/favicon.png">
-		<link rel="icon" href="config/favicon.png">
+		<link rel="icon" href="favicon.png">
+		<link rel="shortcut icon" type="image/png" href="favicon.png" />
 	</head>
-	<style><?php include("$MT_CSS"); ?></style>
+	<style><?php include("$MT_CSS[$styleindex]"); ?></style>
 <body>
 
 
@@ -20,15 +20,13 @@
 <ul class="sidenav">
   <li><a class="active" href="<?php echo($MT_SITE_HOME); ?>"><?php echo($L_SITEHOME); ?></a></li>
   <li><a href="<?php echo("index.html"); ?>"><?php echo($L_MTHOME); ?></a></li>
-  <li style="float:right;top:5px;"><div class="search_icon" onclick="cardopenclose(cardbodyf)"></div></li>
+  <li class="liright">
+	<div onclick="cardopenclose(cardbodyf)" class="search_icon">
+		<div style="transform:rotate(90deg);">&#9740;</div>
+	</div>
+  </li>
 </ul>
 </div>
 
 </header>
 
-
-<div class="content">
-
-<h1><?php echo($L_SITENAME); ?></h1>
-
-<div class="spaceline"></div>

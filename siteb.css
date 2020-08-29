@@ -1,7 +1,9 @@
 
 body {
-    margin:0px;
-    font-size:16px;
+  margin:0px;
+  font-size:16px;
+  color: lightgrey;
+  background-color: black;
 }
 
 a {
@@ -22,9 +24,7 @@ a {
     flex: 1 0 auto;
 }
 
-.insidecontent {
-  padding:20px;
-}
+.insidecontent {padding:20px;}
 
 .menu {
     margin:0;
@@ -34,10 +34,8 @@ a {
 footer {
     margin: 0;
     padding: 0;
-    background-color: #333;
     display: block;
     color: white;
-    padding-left: 20px;
     cursor:default;
 }
 
@@ -111,7 +109,7 @@ li:last-child {
 .message {
     position:relative;
     display:block;
-    padding:10px;
+    padding:20px;
     background-color:red;
     color:white;
     cursor:default;
@@ -122,7 +120,7 @@ li:last-child {
     text-decoration:none;
     position:absolute;
     right:5px;
-    top:5px;
+    top:15px;
     padding:10px;
     font-size:1em;
     color:white;
@@ -139,7 +137,6 @@ li:last-child {
     text-decoration:bold;
     font-size:1.2em;
 }
-
 
 .center {
 	text-align:center !important;
@@ -185,7 +182,11 @@ li:last-child {
     color:white;
 }
 .card-body {
-    padding:10px;
+    padding:20px;
+}
+.cardbody {
+    border: 1px solid;
+    border-color: #2196F3;
 }
 .card p h2{padding:10px;}
 .card form {padding:20px;}
@@ -202,6 +203,11 @@ li:last-child {
     ttransform:rotate(90deg);
 }
 
+.esearch_icon:after{
+    ccontent:"\1F50D";
+    content:"\260C";
+}
+
 .search_icon:hover{
    background-color:red;
 }
@@ -215,9 +221,9 @@ li:last-child {
 }
 .mt-table-all { border:1px solid #ccc }
 .mt-bordered tr,.mt-table-all tr { border-bottom:1px solid #ddd }
-.mt-striped tbody tr:nth-child(even){ background-color:#f1f1f1 }
-.mt-table-all tr:nth-child(odd){background-color:#fff}
-.mt-table-all tr:nth-child(even){background-color:#f1f1f1}
+.mt-striped tbody tr:nth-child(even){ background-color:lightgrey }
+.mt-table-all tr:nth-child(odd){background-color:grey;color:black}
+.mt-table-all tr:nth-child(even){background-color:dimgrey;color:black}
 .mt-hoverable tbody tr:hover,.mt-ul.mt-hoverable li:hover{background-color:#ccc}
 .mt-centered tr th,.mt-centered tr td{text-align:center}
 .mt-table td,.mt-table th,.mt-table-all td,.mt-table-all th {
@@ -235,15 +241,20 @@ input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    background-color:dimgrey;
+    color:white;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 input[type=password], select {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 0;;
+    background-color:dimgrey;
+    color:white;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -251,6 +262,17 @@ input[type=password], select {
 }
 
 input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.inputbutton {
     width: 100%;
     background-color: #4CAF50;
     color: white;
@@ -271,19 +293,6 @@ input[type=submit]:hover {
 }
 
 
-img {
-   cursor: pointer;
-   width:100%;
-}
-
-.imgblock {
-	display:block;
-}
-
-.imgnone {
-	display:none;
-}
-
 .spaceline {
    padding-top:25px;
 }
@@ -295,4 +304,3 @@ img {
 .spaceline100 {
    padding-top:100px;
 }
-
