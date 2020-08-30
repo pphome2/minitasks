@@ -12,10 +12,12 @@
 
 include("config/config.php");
 
-echo("<html><head><style>");
+echo("<html><head>");
+echo("<title>$MT_SITENAME</title>");
+echo("<meta http-equiv=\"refresh\" content=\"60;\"><style>");
 include("$MT_CSS3");
 echo("</style></head><body onclick=\"window.close;\">");
-echo("<a href=$MT_ADMINFILE>");
+echo("<a href=\"$MT_ADMINFILE\">");
 
 # files
 $schemafile="./".$MT_TASKS_ROOT."/".$MT_SCHEMA_FILE;

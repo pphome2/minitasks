@@ -19,7 +19,7 @@
 <div class="menu">
 <ul class="sidenav">
   <li><a class="active" href="<?php echo($MT_SITE_HOME); ?>"><?php echo($L_SITEHOME); ?></a></li>
-  <li><a href="<?php echo("index.html"); ?>"><?php echo($L_MTHOME); ?></a></li>
+  <li><a href="<?php echo($MT_ADMINFILE.'?'.$MT_STYLEPARAM_NAME.'='.$styleindex); ?>"><?php echo($L_MTHOME); ?></a></li>
   <li class="liright">
 	<div onclick="cardopenclose(cardbodyf)" class="search_icon">
 		<div style="transform:rotate(90deg);">&#9740;</div>
