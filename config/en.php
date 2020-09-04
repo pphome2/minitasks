@@ -1,20 +1,32 @@
 <?php
 
  #
- # MiniTasks - document manager for website
+ # MiniApps - framework
  #
  # info: main folder copyright file
  #
  #
 
+# system zone
 $L_SITENAME="Task list";
 $L_SITEHOME="Home";
 $L_MTHOME="Tasks";
 $L_ADMINISTRATION="Administration";
+$L_THEME="Next theme";
+$L_PRIVACY_MENU="Privacy";
+$L_PASS="Access code";
+$L_BUTTON_NEXT="Next";
+$L_LOGOUT="Logout";
+$L_PRINT="Print";
+$L_BACKPAGE="Go back";
+$L_SEARCH="Search";
 
+
+# local app zone
 $L_OK="Ready.";
 $L_NOACCESS="No access rights.";
 $L_NODATA="No data set.";
+$L_BUTTON_ALL="Save";
 
 $L_FILENOTFOUND="File no available.";
 $L_TASKFILENOTFOUND="Datafile not available.";
@@ -25,10 +37,7 @@ $L_DELETEDTASK="Ready.";
 
 $L_NEWDATA="New task";
 $L_NEWARCHIV="Task archive";
-$L_PASS="Access code";
-$L_BUTTON_ALL="Save";
 
-$L_SEARCH="Search:";
 
 $L_FILTER="Filter data";
 $L_ACTUAL="Current data";
@@ -36,13 +45,8 @@ $L_ACTUAL="Current data";
 $L_OPENARCHIVE="Open:";
 $L_ARCHIVEFILE="Archive file:";
 
-$L_PRINT="Print";
 
-$L_BACKPAGE="Go back";
 
-$L_THEME="Next theme";
-
-$L_PRIVACY_MENU="Privacy";
 $L_PRIVACY_HEADER="Privacy page address";
 $L_PRIVACY_TEXT=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in justo sodales, mattis purus quis, ultricies sem.
 					Donec porttitor volutpat blandit. Ut metus velit, feugiat id finibus vitae, vestibulum non metus. Nulla quis

@@ -1,20 +1,33 @@
 <?php
 
  #
- # MiniTasks - document manager for website
+ # MiniApps - framework
  #
  # info: main folder copyright file
  #
  #
 
+
+# system zone / rendszerhez szükséges
 $L_SITENAME="Feladatlista";
 $L_SITEHOME="Nyitólap";
 $L_MTHOME="Feladatok";
 $L_ADMINISTRATION="Adminisztráció";
+$L_PRIVACY_MENU="Adatvédelem";
+$L_THEME="Témaváltás";
+$L_BUTTON_NEXT="Tovább";
+$L_PASS="Hozzáférési kód";
+$L_LOGOUT="Kijelentkezés";
+$L_PRINT="Nyomtatás";
+$L_BACKPAGE="Visszalépés";
+$L_SEARCH="Keresés";
 
+
+# local app zone / a pragram saját mezői
 $L_OK="Végrehajtva.";
 $L_NOACCESS="Hozzáfárás nem engedélyezett.";
 $L_NODATA="Nincs adat megadva.";
+$L_BUTTON_ALL="Mehet";
 
 $L_FILENOTFOUND="Fájl nem található.";
 $L_TASKFILENOTFOUND="Adatfájl nem található vagy még üres.";
@@ -25,10 +38,6 @@ $L_DELETEDTASK="Végrehajtva.";
 
 $L_NEWDATA="Új feladat";
 $L_NEWARCHIV="Adatok archiválása";
-$L_PASS="Hozzáférési kód";
-$L_BUTTON_ALL="Mehet";
-
-$L_SEARCH="Keresés:";
 
 $L_FILTER="Adatok szűrése";
 $L_ACTUAL="Aktuális adatok";
@@ -36,13 +45,7 @@ $L_ACTUAL="Aktuális adatok";
 $L_OPENARCHIVE="Megnyitás:";
 $L_ARCHIVEFILE="Archiv fájl:";
 
-$L_PRINT="Nyomtatás";
 
-$L_BACKPAGE="Visszalépés";
-
-$L_THEME="Témaváltás";
-
-$L_PRIVACY_MENU="Adatvédelem";
 $L_PRIVACY_HEADER="Adatvédelmi nyilatkozat";
 $L_PRIVACY_TEXT=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in justo sodales, mattis purus quis, ultricies sem.
 					Donec porttitor volutpat blandit. Ut metus velit, feugiat id finibus vitae, vestibulum non metus. Nulla quis

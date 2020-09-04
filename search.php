@@ -38,8 +38,8 @@ if (file_exists("$MA_APPFILE")){
 	include("$MA_APPFILE");
 }
 
-if (function_exists("privacypage")){
-	privacypage();
+if (function_exists("searchpage")){
+	searchpage();
 }
 
 button_back();
