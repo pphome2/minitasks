@@ -47,28 +47,23 @@
 				echo("<li><a href=\"?$MA_MENU_FIELD=".$MA_MENU[$i][1]."\">".$MA_MENU[$i][0]."</a></li>");
 			}
 		}
-	}
-
 ?>
 
-  <li class="liright">
-	<a href="<?php echo($MA_SEARCH_ICON_HREF); ?>" onclick="<?php echo($MA_SEARCH_ICON_JS); ?>">
-		<div class="search_icon">&#9740;</div>
-	</a>
-  </li>
-  
-  <li class="liright">
-	  
-<?php
-
-	if (($MA_LOGGEDIN)and($MA_LOGOUT_IN_HEADER)){
-		echo("<a href=#
-			onclick=\"document.cookie='$MA_COOKIE_PASSWORD=$L_LOGOUT; expires=Thu, 01 Jan 1970 00:00:00 UTC;';window.location = window.location.href;\">$L_LOGOUT</a>");
-	}
+		<li class="liright">
+			<a href="<?php echo($MA_SEARCH_ICON_HREF); ?>" onclick="<?php echo($MA_SEARCH_ICON_JS); ?>">
+			<div class="search_icon">&#9740;</div>
+			</a>
+		</li>
 	
+<?php
+		if ($MA_LOGOUT_IN_HEADER){
+			echo("<li class=\"liright\">");
+			echo("<a href=#
+				onclick=\"document.cookie='$MA_COOKIE_PASSWORD=$L_LOGOUT; expires=Thu, 01 Jan 1970 00:00:00 UTC;';window.location = window.location.href;\">$L_LOGOUT</a>");
+			echo("</li>");
+		}
+	}
 ?>
-
-  </li>
 </ul>
 </div>
 
