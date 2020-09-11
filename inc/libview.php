@@ -34,24 +34,21 @@ function button_print(){
 # messages functions
 function mess_error($m){
 	echo('
-	<div class="message">
-  		<div onclick="this.parentElement.style.display=\'none\'" class="toprightclose"></div>
-  		<p class="insidecontent">'.$m.'</p>
-	</div>
+		<div class="message_error">
+			<div onclick="this.parentElement.style.display=\'none\'" class="ttoprightclose">
+				<p class="insidecontent">'.$m.'</p>
+			</div>
+		</div>
 	');
 }
 
 
 function mess_ok($m){
 	echo('
-		<div class="card">
-  			<div onclick="this.parentElement.style.display=\'none\'" class="toprightclose"></div>
-  			<div class=card-header>
-  				<span onclick="var x=document.getElementById(\'cardbody\');if (x.style.display==\'none\'){x.style.display=\'block\'}else{x.style.display=\'none\'}"
-  				class="topleftmenu1"></span></div>
-  			<div class="cardbody" id="cardbody">
-  				<p class="insidecontent">'.$m.'</p>
-  			</div>
+		<div class="message_ok">
+			<div onclick="this.parentElement.style.display=\'none\'" class="ttoprightclose">
+				<p class="insidecontent">'.$m.'</p>
+			</div>
 		</div>
 	');
 }

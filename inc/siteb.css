@@ -115,6 +115,28 @@ li:last-child {
     cursor:default;
 }
 
+.message_error {
+    position:relative;
+    display:block;
+    padding:0px;
+    background-color:red;
+    color:white;
+    cursor:default;
+    border: 0px solid;
+    border-radius:10px;
+}
+
+.message_ok {
+    position:relative;
+    display:block;
+    padding:0px;
+    background-color:lightgreen;
+    color:black;
+    cursor:default;
+    border: 0px solid;
+    border-radius:10px;
+}
+
 
 .topright, .toprightclose {
     text-decoration:none;
