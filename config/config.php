@@ -76,6 +76,11 @@ $MA_USERPAGE=false;
 $MA_MENU_FIELD="m";
 $MA_MENU=array();
 
+# load language file
+if (file_exists("$MA_CONFIG_DIR/$MA_LANGFILE")){
+	include("$MA_CONFIG_DIR/$MA_LANGFILE");
+}
+
 # if not enable cookie support:
 # - all form need add this lines
 #
@@ -90,7 +95,7 @@ $MA_MENU=array();
 # local app config, variables
 
 $MA_MENU=array(
-				array("Lista","list.php")
+				array($L_MENU1,"list.php")
 			);
 
 $MA_SEARCH_ICON_JS="cardopenclose(cardbodyf);return false;";

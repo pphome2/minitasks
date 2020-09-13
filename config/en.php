@@ -45,7 +45,7 @@ $L_ACTUAL="Current data";
 $L_OPENARCHIVE="Open:";
 $L_ARCHIVEFILE="Archive file:";
 
-
+$L_MENU1="Lista";
 
 $L_PRIVACY_HEADER="Privacy page address";
 $L_PRIVACY_TEXT=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in justo sodales, mattis purus quis, ultricies sem.

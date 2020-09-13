@@ -45,6 +45,7 @@ $L_ACTUAL="Aktuális adatok";
 $L_OPENARCHIVE="Megnyitás:";
 $L_ARCHIVEFILE="Archiv fájl:";
 
+$L_MENU1="Lista";
 
 $L_PRIVACY_HEADER="Adatvédelmi nyilatkozat";
 $L_PRIVACY_TEXT=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in justo sodales, mattis purus quis, ultricies sem.
