@@ -1,4 +1,3 @@
-
 <?php
 
  #
@@ -7,7 +6,6 @@
  # info: main folder copyright file
  #
  #
-
 
 
 

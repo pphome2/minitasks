@@ -73,3 +73,4 @@ can be opened but can not be edited.
 
 All displayed messages are in the "config.php" file, you just 
 have to change it to that language ...
+

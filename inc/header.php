@@ -9,6 +9,7 @@
 
 ?>
 
+
 <html>
 	<head>
 		<title><?php echo($MA_SITENAME." - ".$L_SITENAME); ?></title>

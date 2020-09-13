@@ -1,5 +1,6 @@
 <script>
 
+
 // for docs
 
 function cardopenclose(th){

@@ -10,7 +10,6 @@
 
 
 
-
 function searchpage(){
 	global $L_SEARCH;
 
