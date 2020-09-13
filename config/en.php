@@ -45,7 +45,9 @@ $L_ACTUAL="Current data";
 $L_OPENARCHIVE="Open:";
 $L_ARCHIVEFILE="Archive file:";
 
-$L_MENU1="Lista";
+# sytem, but need change it
+
+$L_COOKIE_TEXT="The site use cookies. Please read Privacy menu.";
 
 $L_PRIVACY_HEADER="Privacy page address";
 $L_PRIVACY_TEXT=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in justo sodales, mattis purus quis, ultricies sem.
@@ -60,5 +62,10 @@ $L_PRIVACY_TEXT=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
 					augue consectetur, in scelerisque lacus scelerisque. Donec semper leo a enim lacinia molestie. Nullam fermentum
 					dolor ac tellus vulputate, id vulputate tortor ullamcorper. Duis vitae sapien nec enim dapibus accumsan. Etiam nec
 					vestibulum nibh, eu sodales risus. Aenean erat ante, suscipit at malesuada nec, iaculis nec felis. ";
+
+
+# local app zone
+$L_MENU1="List";
+
 
 ?>
