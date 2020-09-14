@@ -17,7 +17,7 @@
 		$nextstyle=0;
     }
 
-    if (($MA_ENABLE_COOKIES)and(!$MA_LOGGEDIN)){
+    if (($MA_ENABLE_COOKIES)and(!$MA_LOGGEDIN)and(!$MA_PRIVACY_PAGE)){
 		echo("<p class=padleft>$L_COOKIE_TEXT <a class=\"privacybutton\" href=\"$MA_PRIVACY\">$L_PRIVACY_MENU</a></p>");
     }
 
