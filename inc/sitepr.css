@@ -2,6 +2,23 @@ a {
 	text-decoration:none;
 }
 
+.content {
+	margin:20px;
+	padding:20px;
+}
+
+.content2 {
+	margin:auto;
+	width:90%;
+	padding:20px;
+	border: 1px solid;
+	border-color:lightgray;
+}
+
+
+
+/* local app zone */
+
 #st {
 	padding:40px 20px 40px 20px;
 }
