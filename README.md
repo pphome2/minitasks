@@ -25,7 +25,7 @@ Egyszerű:
 ### Telepítés
 
 - felmásolni az összes fájlt a webserver megfelelő könyvtárába
-- írási jog kell a `tasks` könyvtárra
+- írási jog kell a `tasks` könyvtárra, és benne minden fájlra
 - `config` könyvtár `config.php` fájlátnézése, a beállítások itt taláhatók
 - `config` könyvtárban találhatók a nyelvi fájlok, ha szükséges a módosítható
 - a táblázat fejrésze a `tasks\schema` fájlban található

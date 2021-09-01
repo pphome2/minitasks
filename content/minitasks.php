@@ -20,7 +20,7 @@ function searchpage(){
 	echo("</div>");
 }
 
-	
+
 function privacypage(){
 	global $L_PRIVACY_HEADER,$L_PRIVACY_TEXT, $L_BACKPAGE, $MA_NOPAGE;
 
@@ -79,14 +79,13 @@ function printpage(){
 	}else{
 		echo("<section id=message>$L_FILENOTFOUND</section>");
 	}
-	
 }
 
 
 
 function main(){
 	global $ARCHIVE,
-			$MA_ADMINFILE,$MA_PRINTFILE,
+			$MA_ADMINFILE,$MA_PRINTFILE,$MT_DEL_ADD_AS_NEW_DATA,
 			$MT_SCHEMA_FILE,$MT_FIRST_TASKS_FILE,$MT_TASKS_ROOT,$MT_SEPARATE_CHAR_FILTER,
 			$MT_SEPARATE_CHAR,$MA_ADMIN_USER,$MT_AUTO_DATE_TO_FIRST,$MT_ARCHIVE_MAXNUM,
 			$L_SITENAME,$L_DELETEDTASK,$L_OK,$L_NODATA,$L_FILTER,$L_SEARCH,$L_DELETELINE,
@@ -102,8 +101,9 @@ function main(){
 	$taskfile=$MT_FIRST_TASKS_FILE;
 	$taskfile=$MT_TASKS_ROOT."/".$taskfile;
 
-	# delete task fromtable
+	# delete task from table
 
+	$newdata="";
 	if ($_POST["del"]<>""){
 		$line=vinput($_POST["del"]);
 		if (file_exists($taskfile)){
@@ -111,12 +111,14 @@ function main(){
 			$tfa=explode(PHP_EOL,$tf);
 			$db=count($tfa);
 			$k=0;
-			for($i=0;$i<$db;$i++){
+			for($i=0;$i<=$db;$i++){
 				if ($i<>$line){
 					if ($tfa[$i]<>""){
 						$tfa2[$k]=$tfa[$i].PHP_EOL;
 						$k++;
 					}
+				}else{
+					$newdata=$tfa[$i];
 				}
 			}
 			file_put_contents($taskfile,$tfa2);
@@ -148,8 +150,8 @@ function main(){
 		}
 	}
 
-	# archive form
-	
+	# archive data
+
 	if (isset($_POST["submitar"])){
 		$d=date("YmdHis");
 		$arfile=$MT_TASKS_ROOT."/".$d;
@@ -183,7 +185,7 @@ function main(){
 	}
 
 	# generate table and function box
-	
+
 	$d=dirlist($MT_TASKS_ROOT);
 	if (file_exists($schemafile)){
 		if (!file_exists($taskfile)){
@@ -245,9 +247,9 @@ function main(){
 							$link=htmlspecialchars($tfa[$i]);
 							$link=str_replace(" ","_",$link);
 							echo("<td width=10% class=\"center\">");
-							echo("<form action=$MA_ADMINFILE id=2 method=post enctype=multipart/form-data>");
+							echo("<form action=$MA_ADMINFILE id=cc$i method=post enctype=multipart/form-data>");
 							echo("	<input type='hidden' name='del' id='del' value='$i'>");
-							echo("	<input type=submit id=submitdel name=submitdel value='$L_DELETELINEBUTTON'>");
+							echo("	<input type=submit id=submitdel$i name=submitdel value='$L_DELETELINEBUTTON'>");
 							echo("</form></td>");
 						}else{
 							echo("<td width=10% class=\"center\">-</td>");
@@ -259,7 +261,7 @@ function main(){
 			echo("</table>");
 
 			# new data box
-			
+
 			echo('<div class="spaceline50"></div>');
 			echo('
 				<div class="card">
@@ -270,14 +272,23 @@ function main(){
 					<div class="cardbody" id="cardbody0" style="display:none;"><div class="insidecontent">
 			');
 			echo("<form action=$MA_ADMINFILE id=1 method=post enctype=multipart/form-data>");
-			$db=count($scha);
-			for ($i=0;$i<$db;$i++){
-				echo("<label for=$i>$scha[$i] :</label>");
-				if (($MT_AUTO_DATE_TO_FIRST)and($i==0)){
-					$date=date('Y.m.d.');
-					echo("<input name=$i id=$i type=text value=\"$date\" readonly>");
-				}else{
-					echo("<input name=$i id=$i type=text placeholder=\"$scha[$i]\">");
+			if (($MT_DEL_ADD_AS_NEW_DATA)and($newdata<>"")){
+				$scha2=explode($MT_SEPARATE_CHAR,$newdata);
+				$db=count($scha2);
+				for ($i=0;$i<$db;$i++){
+					echo("<label for=$i>$scha[$i] :</label>");
+					echo("<input name=$i id=$i type=text value=\"$scha2[$i]\">");
+				}
+			}else{
+				$db=count($scha);
+				for ($i=0;$i<$db;$i++){
+					echo("<label for=$i>$scha[$i] :</label>");
+					if (($MT_AUTO_DATE_TO_FIRST)and($i==0)){
+						$date=date('Y.m.d.');
+						echo("<input name=$i id=$i type=text value=\"$date\" readonly>");
+					}else{
+						echo("<input name=$i id=$i type=text placeholder=\"$scha[$i]\">");
+					}
 				}
 			}
 			echo("<input type=submit id=submitall name=submitall value=$L_BUTTON_ALL>");
@@ -343,7 +354,6 @@ function main(){
 	}else{
 		mess_error($L_FILENOTFOUND);
 	}
-
 }
 
 

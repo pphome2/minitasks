@@ -115,6 +115,8 @@ $MA_SEARCH_ICON_JS="cardopenclose(cardbodyf);return false;";
 
 $MT_AUTO_DATE_TO_FIRST=true;
 
+$MT_DEL_ADD_AS_NEW_DATA=true;
+
 $MT_CSSLIST="mt.css";
 
 $MT_TASKS_ROOT="tasks";

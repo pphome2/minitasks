@@ -1,4 +1,3 @@
-
 <?php
 
  #
@@ -78,8 +77,8 @@ function login(){
 		}else{
 		}
 		if (!$MA_LOGGEDIN){
-			if (isset($_POST["$MA_COOKIE_PASSWORD"])){
-				$MA_PASSWORD=$_POST["$MA_COOKIE_PASSWORD"];
+			if (isset($_POST[$MA_COOKIE_PASSWORD])){
+				$MA_PASSWORD=$_POST[$MA_COOKIE_PASSWORD];
 				$MA_PASSWORD=vinput($MA_PASSWORD);
 				if (strlen($MA_PASSWORD)<30){
 					$MA_PASSWORD=md5($MA_PASSWORD);
@@ -132,7 +131,9 @@ function setcss(){
 	global $MA_ENABLE_COOKIES,$MA_STYLEINDEX,$MA_COOKIE_STYLE,$MA_CSS;
 	
 	if ($MA_ENABLE_COOKIES){
-		$MA_STYLEINDEX=intval(vinput($_COOKIE[$MA_COOKIE_STYLE]));
+	  if (isset($_COOKIE[$MA_COOKIE_STYLE])){
+			$MA_STYLEINDEX=intval(vinput($_COOKIE[$MA_COOKIE_STYLE]));
+		}
 	}else{
 		if (isset($_POST[$MA_COOKIE_STYLE])){
 			$MA_STYLEINDEX=htmlspecialchars($_POST[$MA_COOKIE_STYLE]);
@@ -163,7 +164,7 @@ function page_header(){
 		include("$MA_HEADER");
 	}
 	if (file_exists("$MA_JS_BEGIN")){
-		include("$MT_JS_BEGIN");
+		include("$MA_JS_BEGIN");
 	}
 }
 
