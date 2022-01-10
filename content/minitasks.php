@@ -131,18 +131,25 @@ function main(){
 	# new task from form
 	
 	if (isset($_POST["submitall"])){
-		$new=vinput($_POST["0"]).$MT_SEPARATE_CHAR;
-		$new=$new.vinput($_POST["1"]).$MT_SEPARATE_CHAR;
-		$new=$new.vinput($_POST["2"]).$MT_SEPARATE_CHAR;
-		$new=$new.vinput($_POST["3"]).$MT_SEPARATE_CHAR;
-		$new=$new.vinput($_POST["4"]).$MT_SEPARATE_CHAR;
-		$new=$new.vinput($_POST["5"]).PHP_EOL;
-		$new=strip_tags($new);
-		if (file_exists($taskfile)){
-			$tf=file_get_contents($taskfile);
-			$tf=$tf.$new;
-			file_put_contents($taskfile,$tf);
-			mess_ok($L_OK);
+		if (file_exists($schemafile)){
+			$sch=file_get_contents($schemafile);
+			$scha=explode($MT_SEPARATE_CHAR,$sch);
+			$dbsch=count($scha);
+			$new="";
+			for ($i=0;$i<$dbsch;$i++){
+				$new=$new.vinput($_POST["$i"]);
+				if (($i+1)<$dbsch){
+					$new=$new.$MT_SEPARATE_CHAR;
+				}
+			}
+			$new=$new.PHP_EOL;
+			$new=strip_tags($new);
+			if (file_exists($taskfile)){
+				$tf=file_get_contents($taskfile);
+				$tf=$tf.$new;
+				file_put_contents($taskfile,$tf);
+				mess_ok($L_OK);
+			}
 		}
 	}else{
 		if (isset($_POST["submitall"])){
