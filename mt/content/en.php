@@ -1,7 +1,7 @@
 <?php
 
  #
- # MiniApps - Demo language
+ # MiniApps
  #
  # info: main folder copyright file
  #

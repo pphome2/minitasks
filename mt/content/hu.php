@@ -56,6 +56,7 @@ $T_TASK_TITLE_CHANGE="Feladat módosítása";
 $T_TASK_DEL="Feladat törlése";
 $T_TASK_FIELDS=array("ID","Dátum","Határidő","Elvégezve","Feladat","Felelős","Megbízó","Leírás","Tulajdonos");
 $T_TASK_TABLE_TITLE=array("Dátum","Határidő","Elvégezve","Feladat","Felelős","Megbízó","Javít");
+$T_TASK_TABLE_TITLE2=array("Dátum","Határidő","Elvégezve","Feladat","Felelős","Megbízó","Részletek");
 
 
 ?>

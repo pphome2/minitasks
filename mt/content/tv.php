@@ -10,7 +10,7 @@
 
 
 function t_view(){
-	global $MA_SQL_RESULT,$T_TASK_NEW,$T_TASK_TABLE_TITLE,$MA_USERNAME,
+	global $MA_SQL_RESULT,$T_TASK_NEW,$T_TASK_TABLE_TITLE2,$MA_USERNAME,
 			$T_WORK,$T_SEARCH,$T_PAGEROW,$T_PAGE_LEFT,$T_PAGE_RIGHT;
 
 	$first=0;
@@ -28,13 +28,13 @@ function t_view(){
 	echo("<center>");
 	echo("<table class='df_table_full' id=ptable>");
 	echo("<tr class='df_trh'>");
-	echo("<th class='df_th'>$T_TASK_TABLE_TITLE[0]</th>");
-	echo("<th class='df_th'>$T_TASK_TABLE_TITLE[1]</th>");
-	echo("<th class='df_th'>$T_TASK_TABLE_TITLE[2]</th>");
-	echo("<th class='df_th'>$T_TASK_TABLE_TITLE[3]</th>");
-	echo("<th class='df_th'>$T_TASK_TABLE_TITLE[4]</th>");
-	echo("<th class='df_th'>$T_TASK_TABLE_TITLE[5]</th>");
-	#echo("<th class='df_th'>$T_TASK_TABLE_TITLE[6]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[0]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[1]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[2]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[3]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[4]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[5]</th>");
+	echo("<th class='df_th'>$T_TASK_TABLE_TITLE2[6]</th>");
 	echo("</tr>");
 	$db=count($MA_SQL_RESULT);
 	for($i=0;$i<$db;$i++){
@@ -46,6 +46,8 @@ function t_view(){
 		echo("<td class='df_td'>$r[4]</td>");
 		echo("<td class='df_td'>$r[5]</td>");
 		echo("<td class='df_td'>$r[6]</td>");
+		$r[7]=str_replace(PHP_EOL,"<br />",$r[7]);
+		echo("<td class='df_td'>$r[7]</td>");
 		echo("</tr>");
 	}
 	echo("</table>");
