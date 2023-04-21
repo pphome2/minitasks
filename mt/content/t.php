@@ -14,16 +14,16 @@ if (function_exists(su_loadusers)){
 
 
 function searchpage(){
-    global $T_TITLE,$MA_BUTTON_TEXT,$MA_SEARCH_TEXT;
+	global $T_SEARCH_TEXT,$L_BUTTON_NEXT,$L_SEARCH;
 
-    searchview($T_TITLE,$MA_BUTTON_TEXT,$MA_SEARCH_TEXT);
+	searchview($T_SEARCH_TEXT,$L_BUTTON_NEXT,$L_SEARCH);
 }
 
 
 function privacypage(){
-    global $T_TITLE,$MA_APPPRIVACYFILE;
+    global $T_PRIV_TEXT,$MA_APPPRIVACYFILE;
 
-    privacyview($T_TITLE,$MA_APPPRIVACYFILE);
+    privacyview($T_PRIV_TEXT,$MA_APPPRIVACYFILE);
 }
 
 

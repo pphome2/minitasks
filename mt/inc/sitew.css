@@ -346,7 +346,7 @@ li:last-child {
 	background-color:#f44336!important;
 }
 
-input[type=text], select, [type=date], textarea {
+input[type=text], select, [type=date] {
 	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
@@ -354,10 +354,6 @@ input[type=text], select, [type=date], textarea {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
-}
-
-input[type=textarea] {
-	height:10em;
 }
 
 input[type=password], select {
@@ -389,6 +385,17 @@ input[type=submit]:hover {
 	width: 20%;
 	border: 1px solid;
 }
+
+textarea {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
 
 img {
 	cursor: pointer;
