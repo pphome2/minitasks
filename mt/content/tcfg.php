@@ -28,7 +28,7 @@ $T_PAGEROW=100;
 
 $MA_USERS_CRED=array(
 					array("admin","e3274be5c857fb42ab72d786e281b4b8"),
-					array("work","5f4dcc3b5aa765d61d8327deb882cf99"),
+					array("user","5g4dcc3g5aa765d61d8327deb882cf99"),
 				);
 
 

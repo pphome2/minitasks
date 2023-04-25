@@ -29,8 +29,8 @@ $MA_CONTENT_DIR="content";
 $MA_PLUGIN_DIR="plugins";
 
 # cookie names
-$MA_COOKIE_STYLE=$MA_CODENAME."st";
-$MA_COOKIE_LOGIN=$MA_CODENAME."l";
+$MA_COOKIE_STYLE="st";
+$MA_COOKIE_LOGIN="l";
 
 # include files
 $MA_ADMINFILE="start.php";
@@ -67,6 +67,9 @@ $MA_LIB=array(
 
 # add directory: load dirname.php, .css, .js from directory
 $MA_PLUGINS=array();
+
+# cookies
+$MA_COOKIES=array();
 
 # language
 $MA_LANGFILE="hu.php";

@@ -30,9 +30,14 @@
 #
 #$SU_USER_ROLE=array("Adminisztrátor","Felhasználó");
 
-# !!! a fájl betöltése előbb legyen mint a vezérlő fájl betöltése
+# !!! ez a fájl betöltése előbb legyen mint a vezérlő fájl betöltése
 
-# vezérlő fájlba:
+# menü beállítás a config.php-ben
+#$MA_ADMINMENU=array(
+#	        array($T_AMENU[0],$T_AMENUCODE[0])
+#            );
+
+# vezérlő fájl elejére:
 #if (function_exists(su_loadusers)){
 #	su_loadusers();
 #}

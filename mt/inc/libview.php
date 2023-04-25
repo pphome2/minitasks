@@ -33,6 +33,7 @@ function searchview($title="",$button="",$search=""){
 }
 
 
+
 # privacy file view
 function privacyview($title="",$pfile=""){
     global $L_PRIVACY_HEADER,$MA_CONTENT_DIR;
@@ -40,26 +41,27 @@ function privacyview($title="",$pfile=""){
     if ($title=""){
         $title=$L_PRIVACY_HEADER;
     }
-	echo("<header><h3>$title</h3></header>");
-	echo("<div class=spaceline></div>");
-	if (!file_exists($pfile)){
-    	if (file_exists("$MA_CONTENT_DIR/$pfile")){
-    	    $pfile="$MA_CONTENT_DIR/$pfile";
-    	}
-	}
-	if (file_exists($pfile)){
-	    echo("<div class=contentbox>");
-	    if ($file=fopen($pfile, "r")) {
+  echo("<header><h3>$title</h3></header>");
+  echo("<div class=spaceline></div>");
+  if (!file_exists($pfile)){
+  	if (file_exists("$MA_CONTENT_DIR/$pfile")){
+  	    $pfile="$MA_CONTENT_DIR/$pfile";
+  	}
+  }
+  if (file_exists($pfile)){
+      echo("<div class=contentbox>");
+      if ($file=fopen($pfile, "r")) {
             while(!feof($file)) {
                 $line=fgets($file);
-        	    echo($line."<br />");
+      	    echo($line."<br />");
             }
             fclose($file);
         }
-	    echo("</div>");
-	}
-	echo("<div class=spaceline></div>");
+      echo("</div>");
+  }
+  echo("<div class=spaceline></div>");
 }
+
 
 
 # backpage button

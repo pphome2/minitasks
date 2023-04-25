@@ -13,7 +13,7 @@ $MA_COPYRIGHT="<a href=https://google.com>Google</a>";
 $MA_SITENAME="Tasks";
 $MA_TITLE="T+";
 $MA_CODENAME="mt";
-$MA_ROOT_HOME="http://10.88.1.249";
+$MA_ROOT_HOME="http://192.168.1.20";
 $MA_ROOT_NAME="Intranet";
 $MA_SITE_HOME="";
 $MA_FAVICON="favicon.png";
@@ -43,7 +43,7 @@ $MA_APPPRIVACYFILE="$MA_CONTENT_DIR/privacy.txt";
 $MA_SQL_SERVER="localhost";
 $MA_SQL_DB="demo";
 $MA_SQL_USER="demo";
-$MA_SQL_PASS="password";
+$MA_SQL_PASS="demopassword";
 
 # menu
 $MA_ADMINMENU=array();

@@ -1,7 +1,7 @@
 <?php
 
  #
- # MiniApp
+ # MiniApp - hu language
  #
  # info: main folder copyright file
  #
@@ -42,9 +42,6 @@ $T_OK="megtörtént";
 $T_ERROR="hiba történt";
 $T_SAVE="Mentés";
 $T_SEARCH="Keresés...";
-
-$T_SEARCH_TEXT="Tárolt elem keresése";
-$T_PRIV_TEXT="Adatvédelmi szabályok";
 
 $T_GO=">>>";
 $T_PAGE_RIGHT=">";
