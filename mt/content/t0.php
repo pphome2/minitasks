@@ -43,7 +43,7 @@ function t_taskdata($new){
 		$title=$T_TASK_TITLE_NEW;
 		if (isset($_POST['0'])){
 			$form=false;
-			$da="\"".$_POST[0]."\"";
+			$da="'".$_POST[0]."'";
 			for($i=1;$i<$db;$i++){
 				$da=$da.", \"".$_POST[$i]."\"";
 			}
