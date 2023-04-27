@@ -56,7 +56,7 @@ function t_tableall(){
 	if (($page>0)and($first>0)){
 		echo("<form method=post>");
 		$p=$page-1;
-		echo("<input type=hidden id=page name=page value=$p>");
+		echo("<input type=hidden id=page name=page value=\"$p\">");
 		echo("<input type=submit id=p name=p value=\"$T_PAGE_LEFT\">");
 		echo("</form>");
 	}else{
@@ -72,7 +72,7 @@ function t_tableall(){
 	if (($db==$I_PAGEROW)and(!$last)){
 		$p=$page+1;
 		echo("<form method=post>");
-		echo("<input type=hidden id=page name=page value=$p>");
+		echo("<input type=hidden id=page name=page value=\"$p\">");
 		echo("<input type=submit id=p name=p value=\"$T_PAGE_RIGHT\">");
 		echo("</form>");
 	}else{

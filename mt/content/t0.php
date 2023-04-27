@@ -43,9 +43,9 @@ function t_taskdata($new){
 		$title=$T_TASK_TITLE_NEW;
 		if (isset($_POST['0'])){
 			$form=false;
-			$da="'".$_POST[0]."'";
+			$da="\"".$_POST[0]."\"";
 			for($i=1;$i<$db;$i++){
-				$da=$da.", '".$_POST[$i]."'";
+				$da=$da.", \"".$_POST[$i]."\"";
 			}
 			$sqlc="insert into mt_tasks (id,datum,hdatum,rdatum,feladat,felelos,megbizo,leiras,tulajdonos) values ($da);";
 			if (sql_run($sqlc)){
@@ -104,7 +104,7 @@ function t_taskdata($new){
 		echo("<h3>$title</h3>");
 		echo("<div class=spaceline></div>");
 		echo("<form method=post>");
-		echo("<input type=hidden id=0 name=0 value='$d[0]'>");
+		echo("<input type=hidden id=0 name=0 value=\"$d[0]\">");
 		$dat=array(2,3);
 		$ro=array(1);
 		for($i=1;$i<$db-2;$i++){
@@ -117,9 +117,9 @@ function t_taskdata($new){
 				$ronly="readonly";
 			}
 			if (in_array($i,$dat)){
-				echo("<input type=date id=$i name=$i placeholder='$T_TASK_FIELDS[$i]' value='$d[$i]' $ronly>");
+				echo("<input type=date id=$i name=$i placeholder=\"$T_TASK_FIELDS[$i]\" value=\"$d[$i]\" $ronly>");
 			}else{
-				echo("<input type=text id=$i name=$i placeholder='$T_TASK_FIELDS[$i]' value='$d[$i]' $ronly>");
+				echo("<input type=text id=$i name=$i placeholder=\"$T_TASK_FIELDS[$i]\" value=\"$d[$i]\" $ronly>");
 			}
 			echo("</div>");
 			echo("</div>");
@@ -128,7 +128,7 @@ function t_taskdata($new){
 		echo("<div class=fcol1>$T_TASK_FIELDS[$i]");
 		echo("</div>");
 		echo("<div class=fcol2>");
-		#echo("<input type=text id=$i name=$i placeholder='$T_TASK_FIELDS[$i]' value='$d[$i]'>");
+		#echo("<input type=text id=$i name=$i placeholder=\"$T_TASK_FIELDS[$i]\" value=\"$d[$i]\">");
 		echo("<textarea rows=10 id=$i name=$i>$d[$i]</textarea>");
 		echo("</div>");
 		echo("</div>");
@@ -228,7 +228,7 @@ function t_tasks(){
 		if (($page>0)and($first>0)){
 			echo("<form method=post>");
 			$p=$page-1;
-			echo("<input type=hidden id=page name=page value=$p>");
+			echo("<input type=hidden id=page name=page value=\"$p\">");
 			echo("<input type=submit id=p name=p value=\"$T_PAGE_LEFT\">");
 			echo("</form>");
 		}else{
@@ -244,7 +244,7 @@ function t_tasks(){
 		if (($db==$I_PAGEROW)and(!$last)){
 			$p=$page+1;
 			echo("<form method=post>");
-			echo("<input type=hidden id=page name=page value=$p>");
+			echo("<input type=hidden id=page name=page value=\"$p\">");
 			echo("<input type=submit id=p name=p value=\"$T_PAGE_RIGHT\">");
 			echo("</form>");
 		}else{
