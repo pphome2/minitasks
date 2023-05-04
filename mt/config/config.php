@@ -41,11 +41,11 @@ $MA_PRINTFILE="print.php";
 $MA_DOWNLOADFILE="dl.php";
 
 $MA_CSS=array(
-			"sitew.css",
-			"siteb.css"
+			"site-light.css",
+			"site-dark.css"
 			);
 $MA_ENABLE_SYSTEM_CSS=true;
-$MA_CSSPRINT="sitepr.css";
+$MA_CSSPRINT="site-print.css";
 
 $MA_JS_BEGIN="js_begin.js";
 $MA_JS_END="js_end.js";
