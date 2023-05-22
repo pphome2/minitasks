@@ -25,8 +25,7 @@ $MA_PLUGINS=array();
 $MA_LANGFILE="hu.php";
 
 # local app main and css file
-$MA_APPFILE=array("",
-                "$MA_LANGFILE",
+$MA_APPFILE=array("$MA_LANGFILE",
                 "tcfg.php",
                 "tv.php",
                 "t1.php",
