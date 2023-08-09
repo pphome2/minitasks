@@ -7,8 +7,8 @@
  #
  #
 
-
-if (function_exists(su_loadusers)){
+$FUNC="su_loadusers";
+if (function_exists($FUNC)){
 	su_loadusers();
 }
 
